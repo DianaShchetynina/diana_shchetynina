@@ -1,3 +1,4 @@
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class CacheFileEventLogger extends FileEventLogger {
         }
     }
 
+    @PreDestroy
     public void destroy() throws IOException {
         if (!cache.isEmpty()) {
             writeEventsFromCache();

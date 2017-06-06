@@ -1,11 +1,15 @@
+import org.springframework.beans.factory.annotation.Value;
 
 public class Client {
+    @Value("${greeting}")
+    private String greeting;
+    private String fullName;
+    private int id;
+
     public Client(Integer id, String fullName) {
         this.id = id;
         this.fullName = fullName;
     }
-
-    private int id;
 
     public String getGreeting() {
         return greeting;
@@ -14,10 +18,6 @@ public class Client {
     public void setGreeting(String greeting) {
         this.greeting = greeting;
     }
-
-    private String greeting;
-    private String fullName;
-
 
     public int getId() {
         return id;
@@ -34,5 +34,4 @@ public class Client {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
 }

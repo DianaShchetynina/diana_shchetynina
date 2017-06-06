@@ -7,10 +7,10 @@
     <bean id="eventLogger"
           class="ConsoleEventLogger"/>
 
-    <bean id="fileEventLogger" class="FileEventLogger" init-method="init">
+    <bean id="fileEventLogger" class="FileEventLogger" >
         <constructor-arg name="fileName" value="file.txt"/>
     </bean>
-    <bean id="cacheFileEventLogger" class="CacheFileEventLogger" parent="fileEventLogger" destroy-method="destroy">
+    <bean id="cacheFileEventLogger" class="CacheFileEventLogger" parent="fileEventLogger">
         <constructor-arg name="cacheSize" type="java.lang.Integer" value="1"/>
     </bean>
 

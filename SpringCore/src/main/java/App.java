@@ -1,23 +1,30 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class App {
-    private EventLogger eventLogger;
+    @Autowired
     private Client client;
-    private CacheFileEventLogger defaultLogger;
-    private Map<EventType, EventLogger> loggers;
 
-    public App(Client client, CacheFileEventLogger cacheFileEventLogger, Map<EventType, EventLogger> loggers) {
+    @Autowired
+    private CacheFileEventLogger defaultLogger;
+
+    private Map<EventType, EventLogger> loggers;
+    private JdbcTemplate jdbcTemplate;
+    public App(Client client,
+               CacheFileEventLogger cacheFileEventLogger,
+               Map<EventType, EventLogger> loggers,
+               JdbcTemplate jdbcTemplate) {
         defaultLogger = cacheFileEventLogger;
         this.client = client;
         this.loggers = loggers;
-
-
+        this.jdbcTemplate = jdbcTemplate;
     }
-
 
     public void logEvent(Event event, EventType eventType) throws IOException {
         EventLogger eventLogger = loggers.get(eventType);
@@ -26,9 +33,24 @@ public class App {
         }
         String message = event.getMsg().replaceAll(String.valueOf(client.getId()), client.getFullName());
         event.setMsg(message);
+        jdbcTemplate.update(" INSERT INTO `user`.`users`\n" +
+                "(`Username`,\n" +
+                "`FirstName`,\n" +
+                "`LastName`,\n" +
+                "`Sex`,\n" +
+                "`Email`,\n" +
+                "`Age`,\n" +
+                "`Password`)\n" +
+                "VALUES\n" +
+                "('Danil',\n" +
+                "'Danil',\n" +
+                "'Danil',\n" +
+                "'Danil',\n" +
+                "'Danil',\n" +
+                "20,\n" +
+                "'Danil');");
         eventLogger.logEvent(event);
     }
-
 
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -42,6 +64,4 @@ public class App {
         System.out.println(app.client.getGreeting());
         ctx.close();
     }
-
-
 }
