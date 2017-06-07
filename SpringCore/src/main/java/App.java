@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -33,23 +32,8 @@ public class App {
         }
         String message = event.getMsg().replaceAll(String.valueOf(client.getId()), client.getFullName());
         event.setMsg(message);
-        jdbcTemplate.update(" INSERT INTO `user`.`users`\n" +
-                "(`Username`,\n" +
-                "`FirstName`,\n" +
-                "`LastName`,\n" +
-                "`Sex`,\n" +
-                "`Email`,\n" +
-                "`Age`,\n" +
-                "`Password`)\n" +
-                "VALUES\n" +
-                "('Danil',\n" +
-                "'Danil',\n" +
-                "'Danil',\n" +
-                "'Danil',\n" +
-                "'Danil',\n" +
-                "20,\n" +
-                "'Danil');");
         eventLogger.logEvent(event);
+        jdbcTemplate.update("INSERT INTO events (Message) VALUES ('"+event.toString().replaceAll("'","")+ "');");
     }
 
     public static void main(String[] args) throws IOException {
