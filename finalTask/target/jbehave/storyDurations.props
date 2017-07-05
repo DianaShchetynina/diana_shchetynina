@@ -1,0 +1,6 @@
+#org.jbehave.core.embedder.StoryManager
+#Wed Jul 05 11:06:05 EEST 2017
+threads=1
+total=20000
+threadAverage=20000
+bdd_task/stories/sendMessageTest.story=20000
