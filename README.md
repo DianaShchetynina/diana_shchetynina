@@ -1,1 +1,0 @@
-# diana_shchetynina

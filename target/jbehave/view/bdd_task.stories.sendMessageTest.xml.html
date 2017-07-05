@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>bdd_task.stories.sendMessageTest</title>
+<style type="text/css" media="all">
+@import url( "./style/jbehave-core.css" );
+</style>
+</head>
+<body>
+ 
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<story path="bdd_task/stories/sendMessageTest.story" title="">
+<scenario keyword="Scenario:" title="Send message verificatino">
+<step outcome="successful">Given I am on www.mail.google.com</step>
+<step outcome="successful">When I login into gmail account with valid credentials <parameter>shheanaid15@gmail.com</parameter> <parameter>annacarenina768232</parameter></step>
+<step outcome="successful">And I click &apos;write&apos; button so then message popup should be open and i could fill in all needed fields to send
+created mail to me with <parameter>shheanaid15@gmail.com</parameter> <parameter>Test</parameter> <parameter>Example_Test_Message</parameter></step>
+<step outcome="successful">And I find sent message from <parameter>&#1103;</parameter> and open it</step>
+<step outcome="successful">Then I verify that this message is mine <parameter>Test</parameter></step>
+</scenario>
+</story>
+
+]]></script>
+</body>
+<!--  SyntaxHighlighter resources:  should be included at end of body -->
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shCore.css"/>
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shThemeRDark.css"/>
+<script language="javascript" src="./js/sh-3.0.83/shCore.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushBash.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushCss.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushDiff.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushGroovy.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJava.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJScript.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPlain.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPython.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushRuby.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushScala.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushXml.js"></script>
+<script language="javascript" src="./js/shBrushBdd.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;    
+    SyntaxHighlighter.all();
+</script>
+</html>
